@@ -1,0 +1,15 @@
+class window.CardView extends Backbone.View
+  className: 'card',
+
+  events: 
+    "click": alert
+
+  initialize: function() {
+    this.listenTo(this.model, 'change', this.render);
+  },
+  template: _.template('<div><%= rank %> of <%= suit %></div'),
+  render: function(event) {
+    var attributes = this.model.toJSON();
+    this.$el.html(this.template(attributes));
+    return this;
+  }
